@@ -1,1 +1,1 @@
-
+Samvaad is a simple yet effective chat application designed to help you stay connected with others through text-based communication. Whether you need a platform for casual conversations or professional networking, Samvaad provides a straightforward and reliable solution.
