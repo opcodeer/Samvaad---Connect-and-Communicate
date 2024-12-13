@@ -15,7 +15,7 @@ export const SocketContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		if (authUser) {
-			const socket = io("https://samvaad-connect-and-communicate-02.vercel.app", {
+			const socket = io("https://samvaad-connect-and-communicate-backend.vercel.app", {
 				query: {
 					userId: authUser._id,
 				},
