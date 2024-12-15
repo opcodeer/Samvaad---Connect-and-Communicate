@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: FRONTEND_URL, // Allow frontend URL
+    origin: "https://samvaad-connect-and-communicate-client.vercel.app", // Allow frontend URL
     credentials: true, // Allow cookies
 }));
 
