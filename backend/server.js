@@ -19,8 +19,14 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: "*", // Adjust this as necessary
-    credentials: true
+    origin: FRONTEND_URL, // Allow frontend URL
+    credentials: true, // Allow cookies
+}));
+
+// Handle CORS preflight requests
+app.options("*", cors({
+    origin: "https://samvaad-connect-and-communicate-client.vercel.app",
+    credentials: true,
 }));
 
 // Routes
@@ -29,10 +35,17 @@ app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
 // Serve static files
-app.use(express.static(path.join(__dirname, "/frontend/dist")));
+app.use(express.static(path.join(__dirname, "frontend", "dist")));
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+app.get("/*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+});
+
+// Debugging middleware (optional)
+app.use((req, res, next) => {
+    console.log(`[${req.method}] ${req.url}`);
+    console.log("Headers:", req.headers);
+    next();
 });
 
 // Start server
